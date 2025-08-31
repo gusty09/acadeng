@@ -621,36 +621,42 @@ export class PDFService {
           .site-visit-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             border: 2px solid #000;
           }
           
           .site-visit-table td {
             border: 1px solid #000;
-            padding: 15px 10px;
-            vertical-align: middle;
+            padding: 12px 10px;
+            vertical-align: top;
+            font-size: 14px;
           }
           
           .label-cell {
-            background-color: #e8e8e8;
+            background-color: #e5e5e5;
             font-weight: bold;
             text-align: center;
             width: 25%;
-            font-size: 14px;
+            vertical-align: middle;
           }
           
           .colon-cell {
             text-align: center;
-            width: 5%;
-            background-color: #e8e8e8;
+            width: 3%;
+            background-color: #e5e5e5;
             font-weight: bold;
+            vertical-align: middle;
           }
           
           .value-cell {
-            width: 70%;
-            min-height: 40px;
-            font-size: 14px;
-            padding: 15px;
+            width: 72%;
+            min-height: 35px;
+            padding: 12px;
+            text-align: right;
+          }
+          
+          .project-components {
+            min-height: 60px;
           }
           
           .duration-cell {
