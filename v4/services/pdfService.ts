@@ -670,7 +670,7 @@ export class PDFService {
           
           .duration-table td {
             border: 1px solid #000;
-            padding: 12px;
+            padding: 10px;
             text-align: center;
             width: 50%;
           }
@@ -678,34 +678,56 @@ export class PDFService {
           .duration-header {
             background-color: #f0f0f0;
             font-weight: bold;
+            font-size: 13px;
           }
           
           .duration-value {
-            min-height: 30px;
+            min-height: 25px;
+            font-size: 13px;
           }
           
           .signature-section {
-            margin-top: 40px;
-            line-height: 2.2;
+            margin-top: 50px;
+            page-break-inside: avoid;
           }
           
           .signature-intro {
-            font-size: 16px;
-            margin-bottom: 20px;
+            font-size: 15px;
+            margin-bottom: 30px;
             text-align: justify;
+            line-height: 1.8;
+          }
+          
+          .visit-date {
+            font-weight: bold;
           }
           
           .signature-lines {
-            margin-top: 20px;
+            margin-top: 30px;
           }
           
           .signature-line {
-            margin: 20px 0;
+            margin: 25px 0;
             display: flex;
             justify-content: space-between;
-            font-size: 16px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
+            align-items: center;
+            font-size: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+            min-height: 40px;
+          }
+          
+          .signature-label {
+            font-weight: bold;
+          }
+          
+          .signature-space {
+            flex: 1;
+            margin: 0 20px;
+          }
+          
+          .signature-role {
+            font-weight: bold;
           }
 
           /* Main Report Page Styles */
