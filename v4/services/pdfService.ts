@@ -1242,72 +1242,70 @@ export class PDFService {
             line-height: 1.4;
           }
           
-          .evaluation-table {
+          .eval-table {
             width: 100%;
             border-collapse: collapse;
             border: 2px solid #1E3A8A;
           }
           
-          .rating-header, .description-header {
+          .rating-column, .description-column {
             background: #1E3A8A;
             color: white;
-            padding: 18px;
+            padding: 10px;
             text-align: center;
             font-weight: bold;
             border: 1px solid #fff;
-            font-size: 16px;
+            font-size: 12px;
           }
           
-          .rating-cell, .description-cell {
+          .rating-row, .description-row {
             border: 1px solid #ddd;
-            padding: 15px;
+            padding: 8px;
             vertical-align: middle;
           }
           
-          .rating-cell {
+          .rating-row {
             text-align: center;
             width: 30%;
           }
           
-          .description-cell {
+          .description-row {
             text-align: right;
-            padding-right: 20px;
+            padding-right: 10px;
             width: 70%;
+            font-size: 11px;
           }
           
-          .evaluation-table tr:nth-child(even) {
+          .eval-table tbody tr:nth-child(even) {
             background-color: #f9f9f9;
           }
           
-          .rating-circles {
+          .rating-options {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 4px;
             align-items: center;
           }
           
-          .rating-circle {
+          .rate-circle {
             display: inline-block;
-            width: 25px;
-            height: 25px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             text-align: center;
-            line-height: 25px;
+            line-height: 20px;
             color: white;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 10px;
           }
           
-          .rating-circle.red { background-color: #DC2626; }
-          .rating-circle.orange { background-color: #EA580C; }
-          .rating-circle.green { background-color: #059669; }
-          
-          .not-available {
+          .unavailable {
             text-align: center;
             color: #666;
             font-style: italic;
-            padding: 15px;
+            padding: 8px;
             border: 1px solid #ddd;
+            font-size: 11px;
           }
 
           /* Print Styles */
