@@ -1157,31 +1157,62 @@ export class PDFService {
       </html>
     `;
 
-    // Return raw HTML content so callers can decide how to present/share it
-    return htmlContent;
+    try {
+      // Generate actual PDF using expo-print
+      const pdfResult = await Print.printToFileAsync({
+        html: htmlContent,
+        width: 612,
+        height: 792,
+        margins: {
+          left: 20,
+          top: 20,
+          right: 20,
+          bottom: 20,
+        },
+      });
+      
+      return pdfResult.uri;
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      // Fallback: return HTML content
+      return htmlContent;
+    }
   }
 
-  static async shareReport(htmlContent: string, projectName: string): Promise<void> {
+  static async shareReport(pdfUri: string, projectName: string): Promise<void> {
     try {
-      const fileName = `${projectName.replace(/[^a-z0-9]/gi, '_')}_TEYASEER_تقرير_${new Date().toISOString().split('T')[0]}`;
+      const fileName = `${projectName.replace(/[^a-z0-9\u0600-\u06FF]/gi, '_')}_TEYASEER_تقرير_${new Date().toISOString().split('T')[0]}`;
       
       if (Platform.OS === 'web') {
-        const printWindow = window.open('', '_blank');
-        if (printWindow) {
-          printWindow.document.write(htmlContent);
-          printWindow.document.close();
-          printWindow.focus();
-          setTimeout(() => {
-            printWindow.print();
-          }, 2000);
+        // For web, try to create a download link
+        if (pdfUri.startsWith('data:') || pdfUri.startsWith('blob:')) {
+          const link = document.createElement('a');
+          link.href = pdfUri;
+          link.download = `${fileName}.pdf`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } else {
+          // If it's HTML content, open in new window for printing
+          const printWindow = window.open('', '_blank');
+          if (printWindow) {
+            printWindow.document.write(pdfUri);
+            printWindow.document.close();
+            printWindow.focus();
+            setTimeout(() => {
+              printWindow.print();
+            }, 2000);
+          }
         }
       } else {
-        // Save HTML to a temporary file and share it, allowing user to export as PDF
-        const fileUri = `${FileSystem.cacheDirectory}${fileName}.html`;
-        await FileSystem.writeAsStringAsync(fileUri, htmlContent, { encoding: FileSystem.EncodingType.UTF8 });
+        // For mobile, use native sharing
         const isAvailable = await Sharing.isAvailableAsync();
         if (isAvailable) {
-          await Sharing.shareAsync(fileUri, { mimeType: 'text/html', dialogTitle: `${fileName}` });
+          await Sharing.shareAsync(pdfUri, { 
+            mimeType: 'application/pdf', 
+            dialogTitle: `تقرير ${projectName}`,
+            UTI: 'com.adobe.pdf'
+          });
         }
       }
     } catch (error) {
