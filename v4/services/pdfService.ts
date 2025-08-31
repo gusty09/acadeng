@@ -732,49 +732,50 @@ export class PDFService {
 
           /* Main Report Page Styles */
           .main-report-page {
-            position: relative;
+            padding: 15mm;
           }
           
           .report-header {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-            gap: 20px;
+            gap: 15mm;
+            margin-bottom: 25mm;
           }
           
           .header-left {
             flex: 1;
-            max-width: 350px;
+            max-width: 45%;
           }
           
           .project-main-image {
             width: 100%;
-            height: 250px;
+            height: 180px;
             object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #ddd;
+            border: 1px solid #ccc;
           }
           
-          .no-image-placeholder {
+          .project-image-placeholder {
             width: 100%;
-            height: 250px;
-            border: 2px dashed #ccc;
-            border-radius: 8px;
+            height: 180px;
+            border: 2px dashed #999;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: #f9f9f9;
+            background: #f5f5f5;
+          }
+          
+          .placeholder-content {
+            text-align: center;
           }
           
           .placeholder-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
+            font-size: 36px;
+            margin-bottom: 8px;
+            display: block;
           }
           
           .placeholder-text {
             color: #666;
-            font-size: 14px;
+            font-size: 12px;
           }
           
           .header-right {
