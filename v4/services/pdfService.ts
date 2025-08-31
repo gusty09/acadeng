@@ -992,14 +992,14 @@ export class PDFService {
 
           /* Site Visit Observations Styles */
           .observations-page {
-            padding: 20mm 15mm;
+            padding: 15mm;
           }
           
-          .page-title {
+          .observations-title {
             text-align: center;
-            font-size: 28px;
+            font-size: 22px;
             font-weight: bold;
-            margin-bottom: 40px;
+            margin-bottom: 20mm;
             color: #1E40AF;
           }
           
