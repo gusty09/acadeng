@@ -182,7 +182,7 @@ export class PDFService {
       `;
     };
 
-    // Generate Main Report Page - Exactly matching the format
+    // Generate Main Report Page - Exact match to image format
     const generateMainReportPage = () => {
       return `
         <div class="page main-report-page">
@@ -191,68 +191,97 @@ export class PDFService {
               ${project.coverImage ? `
                 <img src="${project.coverImage}" alt="صورة المشروع" class="project-main-image" />
               ` : `
-                <div class="no-image-placeholder">
-                  <div class="placeholder-icon">📷</div>
-                  <div class="placeholder-text">صورة المشروع</div>
+                <div class="project-image-placeholder">
+                  <div class="placeholder-content">
+                    <div class="placeholder-icon">🏗️</div>
+                    <div class="placeholder-text">صورة المشروع</div>
+                  </div>
                 </div>
               `}
             </div>
             
             <div class="header-right">
-              <div class="header-info">
+              <div class="header-info-box">
                 <div class="logo-section">
-                  <img src="${teyaseerLogo}" alt="TEYASEER" class="company-logo" />
+                  <div class="teyaseer-logo">TEYASEER</div>
                 </div>
-                <div class="report-date">توقيت الزيارة: ${getCurrentTime()}<br/>${getCurrentDate()}</div>
-                <div class="responsible-person">مسؤول زيارة الموقع<br/>${latestSiteVisit?.inspector || 'مهندس أحمد'}</div>
-                <div class="project-details">
-                  <div class="detail-row">الاستشاري<br/>أكاد للاستشارات الهندسية</div>
-                  <div class="contractor-name">المقاول</div>
-                  <div class="evaluation-rating">التقييم العام للمقاول<br/>●○</div>
+                
+                <div class="visit-timing">
+                  <div class="timing-label">توقيت الزيارة</div>
+                  <div class="timing-value">${getCurrentTime()}</div>
+                  <div class="date-value">${getCurrentDate()}</div>
+                </div>
+                
+                <div class="site-manager">
+                  <div class="manager-label">مسؤول زيارة الموقع</div>
+                  <div class="manager-name">${visitInfo.inspector}</div>
+                </div>
+                
+                <div class="consultant-info">
+                  <div class="consultant-label">الاستشاري</div>
+                  <div class="consultant-name">أكاد للاستشارات الهندسية</div>
+                </div>
+                
+                <div class="contractor-section">
+                  <div class="contractor-label">المقاول</div>
+                </div>
+                
+                <div class="evaluation-section">
+                  <div class="evaluation-label">التقييم العام للمقاول</div>
+                  <div class="rating-indicators">
+                    <span class="rating-dot filled">●</span>
+                    <span class="rating-dot">○</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <h1 class="report-main-title">تقرير فني لضمان جودة الأعمال في الموقع</h1>
-          <h2 class="project-identifier">${project.projectNumber || '023395'} - ${project.clientName || 'عبدالله الجابري'}</h2>
+          <div class="report-title-section">
+            <h1 class="report-main-title">تقرير فني لضمان جودة الأعمال في الموقع</h1>
+            <h2 class="project-identifier">${visitInfo.projectBankNumber} - ${visitInfo.ownerName}</h2>
+          </div>
 
-          <div class="main-content">
+          <div class="content-layout">
             <div class="notes-section">
               <h3 class="section-heading">ملاحظات عامة</h3>
               <div class="general-notes">
-                <p>لقد قمنا بزيارة الموقع يوم ${getCurrentDate()} من قبل ${latestSiteVisit?.inspector || 'المهندس عبدالله الجابري'} وقد</p>
-                <p>لوحظ ما يلي</p>
-                <p>تم الانتهاء من أعمال الحفر والتسوية والخرسانة الأولى</p>
-                <p>تم البدء بأعمال الحديد وأعمال الطوابق وإعداد قوالب الخرسانة للأعمدة</p>
-                <p>تم البدء بأعمال التركيب لقواعد وأعمدة السقف المحيط</p>
-                <p>تم البدء بأعمال السطح للسور المحيط</p>
+                <p>لقد قمنا يوم الأربعاء ${getCurrentDate()} من قبل مهندسين ${visitInfo.inspector} وقد</p>
+                <p>لوحظ مايلي</p>
+                <p>تم الانتهاء من أعمال الخرسانة المسلحة لأرضية الطابق الأول وتم التحقق من مقاولة الأعمدة وتم البدء بأعمال الحديد والقوالب والصب لأرضية الطابق الأول</p>
+                <p>تم البدء بأعمال الحديد وأعمال التجارة وإعداد القوالب وأعمال الخرسانة للأعمدة</p>
+                <p>تم البدء بأعمال الخرسانة لقواعد وأعمدة السور المحيط</p>
+                <p>تم البدء بأعمال الطابق للسور المحيط</p>
                 ${latestSiteVisit?.notes ? `<p>${latestSiteVisit.notes}</p>` : ''}
               </div>
             </div>
 
             <div class="progress-section">
-              <div class="progress-header">
+              <div class="progress-header-box">
                 <div class="completion-percentage">${completionRate.toFixed(2)} %</div>
                 <div class="progress-label">نسبة الإنجاز</div>
               </div>
 
               <table class="progress-summary-table">
-                <tr>
-                  <th class="progress-header-cell">نسبة الإنجاز</th>
-                  <th class="category-header-cell">الفئة</th>
-                </tr>
-                <tr><td class="progress-value">3.00 %</td><td class="category-name">تجهيز الموقع</td></tr>
-                <tr><td class="progress-value">9.93 %</td><td class="category-name">أعمال الأساسات</td></tr>
-                <tr><td class="progress-value">2.25 %</td><td class="category-name">الخرسانة</td></tr>
-                <tr><td class="progress-value">0.00 %</td><td class="category-name">أعمال الطوابق</td></tr>
-                <tr><td class="progress-value">0.24 %</td><td class="category-name">أعمال الجدران</td></tr>
-                <tr><td class="progress-value">0.00 %</td><td class="category-name">التشطيبات</td></tr>
-                <tr><td class="progress-value">0.00 %</td><td class="category-name">أعمال التجارة</td></tr>
-                <tr><td class="progress-value">0.00 %</td><td class="category-name">أعمال الألمونيوم</td></tr>
-                <tr><td class="progress-value">0.00 %</td><td class="category-name">أعمال الكهرباء</td></tr>
-                <tr><td class="progress-value">0.00 %</td><td class="category-name">أعمال التكييف</td></tr>
-                <tr><td class="progress-value">0.00 %</td><td class="category-name">أعمال الكهرباء والميكانيك</td></tr>
+                <thead>
+                  <tr>
+                    <th class="progress-col-header">نسبة الإنجاز</th>
+                    <th class="category-col-header">الفئة</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="progress-percentage">${categoryProgress.sitePreparation.toFixed(2)} %</td><td class="category-name">تجهيز الموقع</td></tr>
+                  <tr><td class="progress-percentage">${categoryProgress.foundationWork.toFixed(2)} %</td><td class="category-name">أعمال الأساسات</td></tr>
+                  <tr><td class="progress-percentage">${categoryProgress.concreteWork.toFixed(2)} %</td><td class="category-name">الخرسانة</td></tr>
+                  <tr><td class="progress-percentage">${categoryProgress.structuralWork.toFixed(2)} %</td><td class="category-name">أعمال الطوابق</td></tr>
+                  <tr><td class="progress-percentage">${categoryProgress.wallWork.toFixed(2)} %</td><td class="category-name">أعمال الجدران</td></tr>
+                  <tr><td class="progress-percentage">${categoryProgress.finishingWork.toFixed(2)} %</td><td class="category-name">التشطيبات</td></tr>
+                  <tr><td class="progress-percentage">${categoryProgress.electricalWork.toFixed(2)} %</td><td class="category-name">أعمال التجارة</td></tr>
+                  <tr><td class="progress-percentage">${categoryProgress.plumbingWork.toFixed(2)} %</td><td class="category-name">أعمال الألمونيوم</td></tr>
+                  <tr><td class="progress-percentage">${categoryProgress.tilingWork.toFixed(2)} %</td><td class="category-name">أعمال الكهرباء</td></tr>
+                  <tr><td class="progress-percentage">${categoryProgress.paintingWork.toFixed(2)} %</td><td class="category-name">أعمال التكييف</td></tr>
+                  <tr><td class="progress-percentage">${categoryProgress.landscaping.toFixed(2)} %</td><td class="category-name">أعمال الكهرباء والميكانيك</td></tr>
+                </tbody>
               </table>
             </div>
           </div>
