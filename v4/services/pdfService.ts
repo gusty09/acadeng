@@ -571,22 +571,23 @@ export class PDFService {
           }
           
           body {
-            font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: #1E293B;
+            font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Arial', sans-serif;
+            line-height: 1.5;
+            color: #000;
             background: #fff;
             direction: rtl;
             text-align: right;
-            font-size: 14px;
+            font-size: 12px;
           }
           
           .page {
-            max-width: 210mm;
-            margin: 0 auto;
-            padding: 15mm;
+            width: 210mm;
             min-height: 297mm;
-            page-break-after: always;
+            padding: 10mm;
+            margin: 0 auto;
             background: #fff;
+            page-break-after: always;
+            position: relative;
           }
           
           .page:last-child {
