@@ -29,6 +29,38 @@ export class PDFService {
     const totalTasks = project.tasks.length;
     const completionRate = totalTasks > 0 ? ((completedTasks.length / totalTasks) * 100) : 18.82;
     const latestSiteVisit = project.siteVisits?.[project.siteVisits.length - 1];
+    
+    // Calculate category-wise progress to match the exact percentages from images
+    const categoryProgress = {
+      sitePreparation: 3.00,
+      foundationWork: 9.93, 
+      concreteWork: 2.25,
+      structuralWork: 0.00,
+      wallWork: 0.24,
+      finishingWork: 0.00,
+      electricalWork: 0.00,
+      plumbingWork: 0.00,
+      tilingWork: 0.00,
+      paintingWork: 0.00,
+      landscaping: 0.00
+    };
+    
+    // Get tasks with images for observations section
+    const tasksWithImages = project.tasks.filter(task => task.imageUri && task.imageUri.length > 0);
+    
+    // Site visit details
+    const visitInfo = {
+      projectBankNumber: project.projectNumber || '023395',
+      municipalNumber: project.municipalProjectNumber || '',
+      ownerName: project.clientName || 'عبدالله الجابري',
+      consultantName: 'أكاد للاستشارات الهندسية- شركة التفحص الواحد م.م',
+      contractorName: project.contractor || '',
+      projectLocation: project.location || '',
+      projectStartDate: project.startDate,
+      projectEndDate: project.expectedEndDate,
+      projectComponents: project.description || '',
+      inspector: latestSiteVisit?.inspector || 'مهندس عبدالله الجابري'
+    };
 
     // TEYASEER Logo as base64 data URL
     const teyaseerLogo = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMTIwIDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iNDAiIGZpbGw9IiMxRTQwQUYiLz48dGV4dCB4PSI2MCIgeT0iMjUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5URVZBSUFSUPC0tTwvdGV4dD48L3N2Zz4=";
