@@ -780,58 +780,113 @@ export class PDFService {
           
           .header-right {
             flex: 1;
+            max-width: 45%;
           }
           
-          .header-info {
-            background: linear-gradient(135deg, #1E3A8A, #1E40AF);
+          .header-info-box {
+            background: linear-gradient(135deg, #1E3A8A, #2563EB);
             color: white;
-            padding: 25px;
-            border-radius: 8px;
-            height: 250px;
+            padding: 15px;
+            height: 180px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            font-size: 11px;
           }
           
           .logo-section {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
           }
           
-          .company-logo {
-            height: 30px;
-            width: auto;
-          }
-          
-          .report-date {
-            font-size: 14px;
-            margin-bottom: 15px;
-          }
-          
-          .responsible-person {
-            font-size: 14px;
-            margin-bottom: 20px;
-            line-height: 1.8;
-          }
-          
-          .project-details {
-            font-size: 12px;
-            line-height: 1.6;
-          }
-          
-          .detail-row {
-            margin-bottom: 15px;
-          }
-          
-          .contractor-name {
-            margin: 15px 0;
+          .teyaseer-logo {
+            background: #fff;
+            color: #1E3A8A;
+            padding: 4px 12px;
             font-weight: bold;
             font-size: 14px;
+            display: inline-block;
           }
           
-          .evaluation-rating {
-            margin-top: 15px;
+          .visit-timing {
+            margin-bottom: 8px;
+            text-align: right;
+          }
+          
+          .timing-label {
+            font-size: 10px;
+            margin-bottom: 2px;
+          }
+          
+          .timing-value {
+            font-weight: bold;
             font-size: 12px;
+          }
+          
+          .date-value {
+            font-size: 11px;
+          }
+          
+          .site-manager {
+            margin-bottom: 8px;
+            text-align: right;
+          }
+          
+          .manager-label {
+            font-size: 10px;
+            margin-bottom: 2px;
+          }
+          
+          .manager-name {
+            font-weight: bold;
+            font-size: 11px;
+          }
+          
+          .consultant-info {
+            margin-bottom: 8px;
+            text-align: right;
+          }
+          
+          .consultant-label {
+            font-size: 10px;
+            margin-bottom: 2px;
+          }
+          
+          .consultant-name {
+            font-size: 11px;
+          }
+          
+          .contractor-section {
+            margin-bottom: 8px;
+            text-align: right;
+          }
+          
+          .contractor-label {
+            font-size: 11px;
+            font-weight: bold;
+          }
+          
+          .evaluation-section {
+            text-align: right;
+          }
+          
+          .evaluation-label {
+            font-size: 10px;
+            margin-bottom: 4px;
+          }
+          
+          .rating-indicators {
+            display: flex;
+            justify-content: flex-end;
+            gap: 4px;
+          }
+          
+          .rating-dot {
+            font-size: 16px;
+          }
+          
+          .rating-dot.filled {
+            color: #FFF;
           }
           
           .report-main-title {
