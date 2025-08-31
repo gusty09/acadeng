@@ -1186,61 +1186,60 @@ export class PDFService {
 
           /* Evaluation Styles */
           .evaluation-page {
-            padding: 15mm;
+            padding: 12mm;
           }
           
-          .evaluation-header {
+          .eval-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 15mm;
           }
           
-          .evaluation-title {
-            font-size: 28px;
+          .eval-title {
+            font-size: 22px;
             font-weight: bold;
             color: #1E40AF;
           }
           
-          .evaluation-status {
-            font-size: 16px;
+          .eval-status {
+            font-size: 14px;
             color: #666;
           }
           
-          .evaluation-legend {
-            margin-bottom: 30px;
-            padding: 20px;
+          .eval-legend {
+            margin-bottom: 15mm;
+            padding: 10mm;
             background-color: #f9f9f9;
-            border-radius: 8px;
             border: 1px solid #ddd;
           }
           
-          .legend-item {
+          .legend-row {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 8mm;
           }
           
           .legend-circle {
             display: inline-block;
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             text-align: center;
-            line-height: 30px;
+            line-height: 24px;
             color: white;
             font-weight: bold;
-            margin-left: 15px;
-            font-size: 14px;
+            margin-left: 8mm;
+            font-size: 12px;
           }
           
-          .legend-circle.red { background-color: #DC2626; }
-          .legend-circle.orange { background-color: #EA580C; }
-          .legend-circle.green { background-color: #059669; }
+          .red-circle { background-color: #DC2626; }
+          .orange-circle { background-color: #EA580C; }
+          .green-circle { background-color: #059669; }
           
-          .legend-text {
-            font-size: 14px;
-            line-height: 1.6;
+          .legend-description {
+            font-size: 11px;
+            line-height: 1.4;
           }
           
           .evaluation-table {
