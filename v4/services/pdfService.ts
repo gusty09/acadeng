@@ -1312,24 +1312,34 @@ export class PDFService {
           @media print {
             body { 
               margin: 0;
-              font-size: 12px;
+              font-size: 11px;
+              -webkit-print-color-adjust: exact;
+              print-color-adjust: exact;
             }
             
             .page { 
               margin: 0;
-              padding: 10mm;
+              padding: 8mm;
               box-shadow: none;
             }
             
             .observation-item,
-            .category-progress-section { 
+            .category-section { 
               break-inside: avoid; 
+            }
+            
+            .report-header {
+              break-inside: avoid;
+            }
+            
+            .signature-section {
+              break-inside: avoid;
             }
           }
           
           @page {
-            size: A4;
-            margin: 0;
+            size: A4 portrait;
+            margin: 5mm;
           }
         </style>
       </head>
