@@ -1094,48 +1094,49 @@ export class PDFService {
 
           /* Progress Tables Styles */
           .progress-tables-page {
-            padding: 15mm;
+            padding: 12mm;
           }
           
-          .overall-progress-header {
+          .page-progress-header {
             background: #1E3A8A;
             color: white;
-            padding: 25px;
+            padding: 15px;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 15mm;
           }
           
-          .overall-percentage {
-            font-size: 32px;
+          .page-progress-percentage {
+            font-size: 24px;
             font-weight: bold;
           }
           
-          .overall-label {
-            font-size: 18px;
-            margin-top: 8px;
+          .page-progress-label {
+            font-size: 14px;
+            margin-top: 4px;
           }
           
-          .category-progress-section {
-            margin-bottom: 40px;
+          .category-section {
+            margin-bottom: 20mm;
+            page-break-inside: avoid;
           }
           
-          .category-progress-header {
+          .category-header {
             background: #1E3A8A;
             color: white;
-            padding: 18px;
+            padding: 12px;
             text-align: center;
             display: flex;
             justify-content: space-between;
             align-items: center;
           }
           
-          .category-progress-percentage {
-            font-size: 24px;
+          .category-percentage {
+            font-size: 18px;
             font-weight: bold;
           }
           
-          .category-progress-title {
-            font-size: 20px;
+          .category-title {
+            font-size: 16px;
             font-weight: bold;
           }
           
