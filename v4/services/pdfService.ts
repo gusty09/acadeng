@@ -932,26 +932,26 @@ export class PDFService {
           }
           
           .progress-section {
-            width: 400px;
+            width: 300px;
             flex-shrink: 0;
           }
           
-          .progress-header {
+          .progress-header-box {
             background: #1E3A8A;
             color: white;
-            padding: 20px;
+            padding: 12px;
             text-align: center;
             margin-bottom: 0;
           }
           
           .completion-percentage {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: bold;
           }
           
           .progress-label {
-            font-size: 16px;
-            margin-top: 5px;
+            font-size: 12px;
+            margin-top: 3px;
           }
           
           .progress-summary-table {
@@ -960,31 +960,33 @@ export class PDFService {
             border: 2px solid #1E3A8A;
           }
           
-          .progress-header-cell, .category-header-cell {
+          .progress-col-header, .category-col-header {
             background: #1E3A8A;
             color: white;
-            padding: 12px;
+            padding: 8px;
             text-align: center;
             font-weight: bold;
             border: 1px solid #fff;
+            font-size: 12px;
           }
           
-          .progress-value {
+          .progress-percentage {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 6px;
             text-align: center;
             font-weight: bold;
             background: #f8f9fa;
+            font-size: 11px;
           }
           
           .category-name {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 6px 8px;
             text-align: right;
-            padding-right: 15px;
+            font-size: 11px;
           }
           
-          .progress-summary-table tr:nth-child(even) .category-name {
+          .progress-summary-table tbody tr:nth-child(even) .category-name {
             background-color: #f9f9f9;
           }
 
