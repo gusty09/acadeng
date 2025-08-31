@@ -2,6 +2,7 @@ import { Project, Task, SiteVisit, ReportSettings } from '../types';
 import { Platform } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
+import * as Print from 'expo-print';
 
 export class PDFService {
   static async generateProjectReport(
@@ -17,7 +18,7 @@ export class PDFService {
       includeTeamInfo: true,
       includeFinancials: true,
       reportLanguage: 'ar',
-      reportFormat: 'comprehensive',
+      reportFormat: 'site-visit',
       pageLayout: 'portrait',
       includeSignatures: true,
       includeQRCode: false
