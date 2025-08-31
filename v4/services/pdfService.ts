@@ -889,25 +889,27 @@ export class PDFService {
             color: #FFF;
           }
           
-          .report-main-title {
+          .report-title-section {
             text-align: center;
-            font-size: 32px;
+            margin-bottom: 20mm;
+          }
+          
+          .report-main-title {
+            font-size: 22px;
             font-weight: bold;
             color: #1E40AF;
-            margin: 30px 0 15px 0;
-            line-height: 1.4;
+            margin-bottom: 8mm;
+            line-height: 1.3;
           }
           
           .project-identifier {
-            text-align: center;
-            font-size: 20px;
+            font-size: 16px;
             color: #666;
-            margin-bottom: 40px;
           }
           
-          .main-content {
+          .content-layout {
             display: flex;
-            gap: 30px;
+            gap: 15mm;
           }
           
           .notes-section {
@@ -915,16 +917,17 @@ export class PDFService {
           }
           
           .section-heading {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 12mm;
             color: #1E40AF;
+            text-align: right;
           }
           
           .general-notes p {
-            margin-bottom: 12px;
-            line-height: 1.8;
-            font-size: 14px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+            font-size: 12px;
             text-align: justify;
           }
           
