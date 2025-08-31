@@ -451,101 +451,105 @@ export class PDFService {
     const generateEvaluationSection = () => {
       return `
         <div class="page evaluation-page">
-          <div class="evaluation-header">
-            <h1 class="evaluation-title">التقييم</h1>
-            <div class="evaluation-status">غير متوفر</div>
+          <div class="eval-header">
+            <h1 class="eval-title">التقييم</h1>
+            <div class="eval-status">غير متوفر</div>
           </div>
           
-          <div class="evaluation-legend">
-            <div class="legend-item">
-              <div class="legend-circle red">1</div>
-              <span class="legend-text">مستوى العمل غير مرضي ويحتاج إلى التحسين</span>
+          <div class="eval-legend">
+            <div class="legend-row">
+              <div class="legend-circle red-circle">1</div>
+              <span class="legend-description">مستوى العمل غير جيد ويحتاج إلى التحسين</span>
             </div>
-            <div class="legend-item">
-              <div class="legend-circle orange">2</div>
-              <span class="legend-text">مستوى العمل جيد مع وجود نقاط يمكن تحسينها</span>
+            <div class="legend-row">
+              <div class="legend-circle orange-circle">2</div>
+              <span class="legend-description">مستوى العمل جيد مع وجود نقاط يمكن تحسينها</span>
             </div>
-            <div class="legend-item">
-              <div class="legend-circle green">3</div>
-              <span class="legend-text">مستوى العمل جيد جداً وفقاً لمعايير المخططات والمواصفات المعتمدة والمتفق عليها</span>
+            <div class="legend-row">
+              <div class="legend-circle green-circle">3</div>
+              <span class="legend-description">مستوى العمل جيد جداً ومتوافق مع المخططات والمواصفات المحددة والمتفق عليها</span>
             </div>
           </div>
 
-          <table class="evaluation-table">
-            <tr>
-              <th class="rating-header">تصنيف التقييم</th>
-              <th class="description-header">الوصف</th>
-            </tr>
-            <tr>
-              <td class="rating-cell">
-                <div class="rating-circles">
-                  <div class="rating-circle red">1</div>
-                  <div class="rating-circle orange">2</div>
-                  <div class="rating-circle green">3</div>
-                </div>
-              </td>
-              <td class="description-cell">جودة أعمال الخرسانة والردم</td>
-            </tr>
-            <tr>
-              <td class="rating-cell">
-                <div class="rating-circles">
-                  <div class="rating-circle red">1</div>
-                  <div class="rating-circle orange">2</div>
-                  <div class="rating-circle green">3</div>
-                </div>
-              </td>
-              <td class="description-cell">جودة أعمال الحديد</td>
-            </tr>
-            <tr>
-              <td class="rating-cell">
-                <div class="rating-circles">
-                  <div class="rating-circle red">1</div>
-                  <div class="rating-circle orange">2</div>
-                  <div class="rating-circle green">3</div>
-                </div>
-              </td>
-              <td class="description-cell">جودة الأعمال الإنشائية</td>
-            </tr>
-            <tr>
-              <td class="rating-cell">
-                <div class="rating-circles">
-                  <div class="rating-circle red">1</div>
-                  <div class="rating-circle orange">2</div>
-                  <div class="rating-circle green">3</div>
-                </div>
-              </td>
-              <td class="description-cell">الصحة والسلامة وجودة المرافق</td>
-            </tr>
-            <tr>
-              <td class="rating-cell">
-                <div class="rating-circles">
-                  <div class="rating-circle red">1</div>
-                  <div class="rating-circle orange">2</div>
-                  <div class="rating-circle green">3</div>
-                </div>
-              </td>
-              <td class="description-cell">أعمال الطوابق</td>
-            </tr>
-            <tr><td class="not-available">غير متوفر</td><td class="description-cell">أعمال الطوابق</td></tr>
-            <tr><td class="not-available">غير متوفر</td><td class="description-cell">أعمال الجدران</td></tr>
-            <tr><td class="not-available">غير متوفر</td><td class="description-cell">الهيكل الداخلي</td></tr>
-            <tr><td class="not-available">غير متوفر</td><td class="description-cell">الهيكل والواجهات الخارجية</td></tr>
-            <tr><td class="not-available">غير متوفر</td><td class="description-cell">أعمال الكهرباء</td></tr>
-            <tr><td class="not-available">غير متوفر</td><td class="description-cell">أعمال التكييف</td></tr>
-            <tr><td class="not-available">غير متوفر</td><td class="description-cell">أعمال التبليط والبلاط والسيراميك</td></tr>
-            <tr><td class="not-available">غير متوفر</td><td class="description-cell">الخدمات المساندة</td></tr>
-            <tr><td class="not-available">غير متوفر</td><td class="description-cell">الأثاث</td></tr>
-            <tr><td class="not-available">غير متوفر</td><td class="description-cell">الألمونيوم والزجاج</td></tr>
-            <tr>
-              <td class="rating-cell">
-                <div class="rating-circles">
-                  <div class="rating-circle red">1</div>
-                  <div class="rating-circle orange">2</div>
-                  <div class="rating-circle green">3</div>
-                </div>
-              </td>
-              <td class="description-cell">التقييم الكلي</td>
-            </tr>
+          <table class="eval-table">
+            <thead>
+              <tr>
+                <th class="rating-column">تصنيف التقييم</th>
+                <th class="description-column">الوصف</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="rating-row">
+                  <div class="rating-options">
+                    <div class="rate-circle red-circle">1</div>
+                    <div class="rate-circle orange-circle">2</div>
+                    <div class="rate-circle green-circle">3</div>
+                  </div>
+                </td>
+                <td class="description-row">جودة أعمال الحفر والردم</td>
+              </tr>
+              <tr>
+                <td class="rating-row">
+                  <div class="rating-options">
+                    <div class="rate-circle red-circle">1</div>
+                    <div class="rate-circle orange-circle">2</div>
+                    <div class="rate-circle green-circle">3</div>
+                  </div>
+                </td>
+                <td class="description-row">جودة أعمال الحديد</td>
+              </tr>
+              <tr>
+                <td class="rating-row">
+                  <div class="rating-options">
+                    <div class="rate-circle red-circle">1</div>
+                    <div class="rate-circle orange-circle">2</div>
+                    <div class="rate-circle green-circle">3</div>
+                  </div>
+                </td>
+                <td class="description-row">جودة الأعمال الخرسانية</td>
+              </tr>
+              <tr>
+                <td class="rating-row">
+                  <div class="rating-options">
+                    <div class="rate-circle red-circle">1</div>
+                    <div class="rate-circle orange-circle">2</div>
+                    <div class="rate-circle green-circle">3</div>
+                  </div>
+                </td>
+                <td class="description-row">الصحة والسلامة وجودة المرافق</td>
+              </tr>
+              <tr>
+                <td class="rating-row">
+                  <div class="rating-options">
+                    <div class="rate-circle red-circle">1</div>
+                    <div class="rate-circle orange-circle">2</div>
+                    <div class="rate-circle green-circle">3</div>
+                  </div>
+                </td>
+                <td class="description-row">أعمال الطوابق</td>
+              </tr>
+              <tr><td class="unavailable">غير متوفر</td><td class="description-row">أعمال الطوابق</td></tr>
+              <tr><td class="unavailable">غير متوفر</td><td class="description-row">أعمال الجدران</td></tr>
+              <tr><td class="unavailable">غير متوفر</td><td class="description-row">الطلاء الداخلي</td></tr>
+              <tr><td class="unavailable">غير متوفر</td><td class="description-row">الطلاء والواجهات الخارجية</td></tr>
+              <tr><td class="unavailable">غير متوفر</td><td class="description-row">أعمال الكهرباء</td></tr>
+              <tr><td class="unavailable">غير متوفر</td><td class="description-row">أعمال التكييف</td></tr>
+              <tr><td class="unavailable">غير متوفر</td><td class="description-row">أعمال الأساليب والتنظيف والصرف</td></tr>
+              <tr><td class="unavailable">غير متوفر</td><td class="description-row">الخدمات المساندة</td></tr>
+              <tr><td class="unavailable">غير متوفر</td><td class="description-row">الأثاث</td></tr>
+              <tr><td class="unavailable">غير متوفر</td><td class="description-row">الألمونيوم والزجاج</td></tr>
+              <tr>
+                <td class="rating-row">
+                  <div class="rating-options">
+                    <div class="rate-circle red-circle">1</div>
+                    <div class="rate-circle orange-circle">2</div>
+                    <div class="rate-circle green-circle">3</div>
+                  </div>
+                </td>
+                <td class="description-row">التقييم الكلي</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       `;
