@@ -94,43 +94,45 @@ export class PDFService {
       });
     };
 
-    // Generate Site Visit Form - First Page
+    // Generate Site Visit Form - First Page (Exact match to image)
     const generateSiteVisitForm = () => {
       return `
         <div class="page site-visit-page">
           <div class="form-container">
-            <h1 class="form-title">زيارة موقعية</h1>
+            <div class="form-title-container">
+              <h1 class="form-title">زيارة موقعية</h1>
+            </div>
             
             <table class="site-visit-table">
               <tr>
                 <td class="label-cell">رقم المشروع بالبنك</td>
                 <td class="colon-cell">:</td>
-                <td class="value-cell">${project.projectNumber || ''}</td>
+                <td class="value-cell">${visitInfo.projectBankNumber}</td>
               </tr>
               <tr>
-                <td class="label-cell">رقم المشروع البلدية</td>
+                <td class="label-cell">رقم المشروع بالبلدية</td>
                 <td class="colon-cell">:</td>
-                <td class="value-cell">${project.municipalProjectNumber || ''}</td>
+                <td class="value-cell">${visitInfo.municipalNumber}</td>
               </tr>
               <tr>
                 <td class="label-cell">اسم المالك</td>
                 <td class="colon-cell">:</td>
-                <td class="value-cell">${project.clientName || ''}</td>
+                <td class="value-cell">${visitInfo.ownerName}</td>
               </tr>
               <tr>
                 <td class="label-cell">اسم الاستشاري</td>
                 <td class="colon-cell">:</td>
-                <td class="value-cell">أكاد للاستشارات الهندسية- شركة التفحص الواحد م.م</td>
+                <td class="value-cell">${visitInfo.consultantName}</td>
               </tr>
               <tr>
                 <td class="label-cell">اسم المقاول</td>
                 <td class="colon-cell">:</td>
-                <td class="value-cell">${project.contractor || ''}</td>
+                <td class="value-cell">${visitInfo.contractorName}</td>
               </tr>
               <tr>
                 <td class="label-cell">موقع المشروع</td>
                 <td class="colon-cell">:</td>
-                <td class="value-cell">${project.location || ''}</td>
+                <td class="value-cell">${visitInfo.projectLocation}</td>
               </tr>
               <tr>
                 <td class="label-cell">مدة التنفيذ</td>
@@ -142,8 +144,8 @@ export class PDFService {
                       <td class="duration-header">نهاية المشروع</td>
                     </tr>
                     <tr>
-                      <td class="duration-value">${formatDate(project.startDate)}</td>
-                      <td class="duration-value">${formatDate(project.expectedEndDate)}</td>
+                      <td class="duration-value">${formatDate(visitInfo.projectStartDate)}</td>
+                      <td class="duration-value">${formatDate(visitInfo.projectEndDate)}</td>
                     </tr>
                   </table>
                 </td>
@@ -151,24 +153,27 @@ export class PDFService {
               <tr>
                 <td class="label-cell">مكونات المشروع</td>
                 <td class="colon-cell">:</td>
-                <td class="value-cell">${project.description}</td>
+                <td class="value-cell project-components">${visitInfo.projectComponents}</td>
               </tr>
             </table>
 
             <div class="signature-section">
-              <p class="signature-intro">تمت زيارة الموقع المذكور بياناته أعلاه بتاريخ ${getCurrentDate()} بحضور كل من</p>
+              <p class="signature-intro">تمت زيارة الموقع المذكور بياناته أعلاه بتاريخ <span class="visit-date">${getCurrentDate()}</span> بحضور كل من</p>
               <div class="signature-lines">
                 <div class="signature-line">
-                  <span>السيد :</span>
-                  <span>بصفته</span>
+                  <span class="signature-label">السيد :</span>
+                  <div class="signature-space"></div>
+                  <span class="signature-role">بصفته</span>
                 </div>
                 <div class="signature-line">
-                  <span>السيد :</span>
-                  <span>بصفته</span>
+                  <span class="signature-label">السيد :</span>
+                  <div class="signature-space"></div>
+                  <span class="signature-role">بصفته</span>
                 </div>
                 <div class="signature-line">
-                  <span>السيد :</span>
-                  <span>بصفته</span>
+                  <span class="signature-label">السيد :</span>
+                  <div class="signature-space"></div>
+                  <span class="signature-role">بصفته</span>
                 </div>
               </div>
             </div>
