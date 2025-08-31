@@ -1140,47 +1140,48 @@ export class PDFService {
             font-weight: bold;
           }
           
-          .detailed-progress-table {
+          .progress-detail-table {
             width: 100%;
             border-collapse: collapse;
             border: 2px solid #1E3A8A;
           }
           
-          .current-visit-header, .previous-visit-header, .description-header {
+          .current-column, .previous-column, .description-column {
             background: #1E3A8A;
             color: white;
-            padding: 15px 10px;
+            padding: 8px;
             text-align: center;
             font-weight: bold;
             border: 1px solid #fff;
-            font-size: 14px;
+            font-size: 11px;
           }
           
-          .current-progress, .previous-progress {
+          .progress-current, .progress-previous {
             border: 1px solid #ddd;
-            padding: 12px;
+            padding: 6px;
             text-align: center;
             font-weight: bold;
             width: 20%;
+            font-size: 10px;
           }
           
-          .work-description {
+          .work-item {
             border: 1px solid #ddd;
-            padding: 12px;
+            padding: 6px 8px;
             text-align: right;
-            padding-right: 15px;
             width: 60%;
+            font-size: 10px;
           }
           
-          .detailed-progress-table tr:nth-child(even) {
+          .progress-detail-table tbody tr:nth-child(even) {
             background-color: #f9f9f9;
           }
           
-          .notes-section {
-            margin-top: 20px;
+          .category-notes {
+            margin-top: 8px;
             color: #666;
-            font-style: italic;
-            font-size: 14px;
+            font-size: 11px;
+            text-align: right;
           }
 
           /* Evaluation Styles */
