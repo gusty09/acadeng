@@ -378,56 +378,70 @@ export class PDFService {
       `;
     };
 
-    // Generate Progress Tables - Exact format match
+    // Generate Progress Tables - Exact format match with task integration
     const generateProgressTables = () => {
+      // Get tasks for each category to calculate progress
+      const sitePreparationTasks = project.tasks.filter(task => task.phase === 'sitePreparation');
+      const foundationTasks = project.tasks.filter(task => task.phase === 'foundationWork');
+      
       return `
         <div class="page progress-tables-page">
-          <div class="overall-progress-header">
-            <div class="overall-percentage">${completionRate.toFixed(2)} %</div>
-            <div class="overall-label">نسبة الإنجاز</div>
+          <div class="page-progress-header">
+            <div class="page-progress-percentage">${completionRate.toFixed(2)} %</div>
+            <div class="page-progress-label">نسبة الإنجاز</div>
           </div>
 
-          <div class="category-progress-section">
-            <div class="category-progress-header">
-              <div class="category-progress-percentage">3.00 %</div>
-              <div class="category-progress-title">تجهيز الموقع</div>
+          <!-- Site Preparation Section -->
+          <div class="category-section">
+            <div class="category-header">
+              <div class="category-percentage">${categoryProgress.sitePreparation.toFixed(2)} %</div>
+              <div class="category-title">تجهيز الموقع</div>
             </div>
             
-            <table class="detailed-progress-table">
-              <tr>
-                <th class="current-visit-header">زيارة الموقع - 3 أشهر</th>
-                <th class="previous-visit-header">زيارة الموقع السابقة</th>
-                <th class="description-header">الوصف</th>
-              </tr>
-              <tr><td class="current-progress">100.00 %</td><td class="previous-progress">0.00 %</td><td class="work-description">سياج مؤقت</td></tr>
-              <tr><td class="current-progress">100.00 %</td><td class="previous-progress">0.00 %</td><td class="work-description">لوحة المشروع</td></tr>
-              <tr><td class="current-progress">100.00 %</td><td class="previous-progress">0.00 %</td><td class="work-description">إمدادات الكهرباء والمياه المؤقتة</td></tr>
+            <table class="progress-detail-table">
+              <thead>
+                <tr>
+                  <th class="current-column">زيارة الموقع - 3 أشهر</th>
+                  <th class="previous-column">زيارة الموقع السابقة</th>
+                  <th class="description-column">الوصف</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="progress-current">100.00 %</td><td class="progress-previous">0.00 %</td><td class="work-item">سياج مؤقت</td></tr>
+                <tr><td class="progress-current">100.00 %</td><td class="progress-previous">0.00 %</td><td class="work-item">لوحة المشروع</td></tr>
+                <tr><td class="progress-current">100.00 %</td><td class="progress-previous">0.00 %</td><td class="work-item">إمدادات الكهرباء والمياه المؤقتة</td></tr>
+              </tbody>
             </table>
             
-            <div class="notes-section">ملاحظات:</div>
+            <div class="category-notes">ملاحظات:</div>
           </div>
 
-          <div class="category-progress-section">
-            <div class="category-progress-header">
-              <div class="category-progress-percentage">9.93 %</div>
-              <div class="category-progress-title">أعمال الأساسات</div>
+          <!-- Foundation Work Section -->
+          <div class="category-section">
+            <div class="category-header">
+              <div class="category-percentage">${categoryProgress.foundationWork.toFixed(2)} %</div>
+              <div class="category-title">أعمال الأساسات</div>
             </div>
             
-            <table class="detailed-progress-table">
-              <tr>
-                <th class="current-visit-header">زيارة الموقع - 3 أشهر</th>
-                <th class="previous-visit-header">زيارة الموقع السابقة</th>
-                <th class="description-header">الوصف</th>
-              </tr>
-              <tr><td class="current-progress">100.00 %</td><td class="previous-progress">0.00 %</td><td class="work-description">أعمال الحفر</td></tr>
-              <tr><td class="current-progress">100.00 %</td><td class="previous-progress">0.00 %</td><td class="work-description">أعمال الأساسات أو الرباط</td></tr>
-              <tr><td class="current-progress">100.00 %</td><td class="previous-progress">0.00 %</td><td class="work-description">أقطاب الارتباط وقوائم الأعمدة</td></tr>
-              <tr><td class="current-progress">100.00 %</td><td class="previous-progress">0.00 %</td><td class="work-description">الجسور الأرضية</td></tr>
-              <tr><td class="current-progress">80.00 %</td><td class="previous-progress">0.00 %</td><td class="work-description">أعمال الردم</td></tr>
-              <tr><td class="current-progress">100.00 %</td><td class="previous-progress">0.00 %</td><td class="work-description">خرسانة أرضية الطابق الأرضي</td></tr>
+            <table class="progress-detail-table">
+              <thead>
+                <tr>
+                  <th class="current-column">زيارة الموقع - 3 أشهر</th>
+                  <th class="previous-column">زيارة الموقع السابقة</th>
+                  <th class="description-column">الوصف</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="progress-current">100.00 %</td><td class="progress-previous">0.00 %</td><td class="work-item">أعمال الحفر</td></tr>
+                <tr><td class="progress-current">100.00 %</td><td class="progress-previous">0.00 %</td><td class="work-item">أعمال الأساسات أو الاوتاد</td></tr>
+                <tr><td class="progress-current">100.00 %</td><td class="progress-previous">0.00 %</td><td class="work-item">أغطية الاوتاد ورقاب الأعمدة</td></tr>
+                <tr><td class="progress-current">100.00 %</td><td class="progress-previous">0.00 %</td><td class="work-item">الجسور الأرضية</td></tr>
+                <tr><td class="progress-current">80.00 %</td><td class="progress-previous">0.00 %</td><td class="work-item">أعمال الردم</td></tr>
+                <tr><td class="progress-current">100.00 %</td><td class="progress-previous">0.00 %</td><td class="work-item">خرسانة أرضية الطابق الأرضي</td></tr>
+              </tbody>
             </table>
             
-            <div class="notes-section">ملاحظات: تم الانتهاء من أعمال الردم في الجزء المحيط لقاعدة الفيلا</div>
+            <div class="category-notes">ملاحظات: لم يتم الانتهاء من أعمال الردم في الجزء المحيط لبناء الفيلا</div>
           </div>
         </div>
       `;
