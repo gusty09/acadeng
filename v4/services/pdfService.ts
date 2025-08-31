@@ -1005,70 +1005,91 @@ export class PDFService {
           
           .observation-item {
             display: flex;
-            gap: 20px;
-            margin-bottom: 40px;
-            border: 2px solid #e0e0e0;
-            padding: 25px;
-            border-radius: 8px;
-            background: #fafafa;
+            gap: 10mm;
+            margin-bottom: 15mm;
+            border: 1px solid #ddd;
+            padding: 8mm;
+            page-break-inside: avoid;
           }
           
-          .observation-text {
+          .observation-content {
             flex: 1;
+            text-align: right;
           }
           
-          .category-header {
-            margin-bottom: 20px;
+          .observation-header {
+            margin-bottom: 8mm;
+            display: flex;
+            gap: 5mm;
+            align-items: center;
           }
           
           .category-title {
             color: #1E40AF;
-            font-size: 20px;
+            font-size: 14px;
             font-weight: bold;
+            margin: 0;
+          }
+          
+          .category-name {
+            color: #1E40AF;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0;
+          }
+          
+          .observation-details {
             text-align: right;
           }
           
-          .observation-content {
-            text-align: right;
+          .detail-section {
+            margin-bottom: 6mm;
           }
           
-          .sub-category {
+          .detail-label {
             color: #1E40AF;
             font-weight: bold;
-            margin: 20px 0 8px 0;
-            font-size: 16px;
+            margin-bottom: 2mm;
+            font-size: 12px;
           }
           
-          .review-elements, .observations-text, .required-correction {
-            margin-bottom: 15px;
-            line-height: 1.8;
-            font-size: 14px;
+          .detail-text {
+            line-height: 1.5;
+            font-size: 11px;
             text-align: justify;
+            margin: 0;
           }
           
-          .observation-image {
-            width: 300px;
+          .observation-image-container {
+            width: 200px;
             flex-shrink: 0;
           }
           
-          .task-observation-image {
+          .observation-image {
             width: 100%;
-            height: 220px;
+            height: 150px;
             object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #ddd;
+            border: 1px solid #ddd;
           }
           
-          .placeholder-image {
+          .image-placeholder {
             width: 100%;
-            height: 220px;
+            height: 150px;
             border: 2px dashed #ccc;
-            border-radius: 8px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             background: #f9f9f9;
+          }
+          
+          .image-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+          }
+          
+          .image-text {
+            font-size: 10px;
+            color: #666;
           }
 
           /* Progress Tables Styles */
