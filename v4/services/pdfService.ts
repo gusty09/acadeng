@@ -596,22 +596,26 @@ export class PDFService {
 
           /* Site Visit Form Styles */
           .site-visit-page {
-            display: flex;
-            flex-direction: column;
+            padding: 15mm;
           }
           
           .form-container {
-            flex: 1;
+            width: 100%;
+          }
+          
+          .form-title-container {
+            text-align: center;
+            margin-bottom: 40px;
           }
           
           .form-title {
-            text-align: center;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
-            margin-bottom: 30px;
-            padding: 20px;
+            padding: 20px 40px;
             border: 3px solid #000;
-            background: #f9f9f9;
+            background: #f8f8f8;
+            display: inline-block;
+            margin: 0 auto;
           }
           
           .site-visit-table {
