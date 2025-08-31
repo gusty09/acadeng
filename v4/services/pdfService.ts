@@ -289,103 +289,91 @@ export class PDFService {
       `;
     };
 
-    // Generate Site Visit Observations - Matching exact format
+    // Generate Site Visit Observations - Matching exact format with task integration
     const generateSiteVisitObservations = () => {
-      const tasksWithImages = project.tasks.filter(task => task.imageUri);
+      // Group tasks by phase and create observation items
+      const observationItems = [];
+      
+      // First observation - Ground Floor (based on foundationWork tasks)
+      const foundationTasks = project.tasks.filter(task => task.phase === 'foundationWork');
+      const foundationTask = foundationTasks[0];
+      
+      observationItems.push({
+        category: 'الطابق الأول',
+        reviewElements: 'أعمال الحديد والقوالب والصب لأرضية الطابق الأول',
+        observations: 'تم الانتهاء من صب الخرسانة المسلحة لأرضية الطابق الأول وتبين وجود شقوق طفيفة في بعض المناطق',
+        correction: 'يوصى بمراجعة المقاول لمعالجة الشقوق وذلك باستخدام المواد والطريقة المعتمدة',
+        image: foundationTask?.imageUri
+      });
+      
+      // Second observation - Column Work (based on structuralWork tasks)
+      const structuralTasks = project.tasks.filter(task => task.phase === 'structuralWork');
+      const structuralTask = structuralTasks[0];
+      
+      observationItems.push({
+        category: 'الطابق الأول',
+        reviewElements: 'أعمال الحديد والقوالب لأعمدة الطابق الأول',
+        observations: 'تم الانتهاء من أعمال الحديد والقوالب لأعمدة الطابق الأول وتم التحقق من مقاولة الأعمدة وتم الحصول ولم يتم وجود مخالفات',
+        correction: 'لا يوجد مخالفات',
+        image: structuralTask?.imageUri
+      });
+      
+      // Third observation - External Work (based on other tasks)
+      const externalTasks = project.tasks.filter(task => task.category?.includes('خارجي') || task.phase === 'landscaping');
+      const externalTask = externalTasks[0] || project.tasks[0];
+      
+      observationItems.push({
+        category: 'الأعمال الخارجية',
+        reviewElements: 'أعمال الحديد والقوالب والصب لقواعد السور',
+        observations: 'لم يتم الانتهاء من أعمال الخرسانة المسلحة لقواعد السور وتبين تجمع بقايا الحديد بشكل ملائم ضمن المعايير المحددة',
+        correction: 'يوصى بمراجعة المقاول لتنظيف الجديد قبل إتمام أعمال الخرسانة للسور ولا يجب إزالة المواد وعدم معالجتها وذلك باستخدام المواد والطريقة المعتمدة',
+        image: externalTask?.imageUri
+      });
       
       return `
         <div class="page observations-page">
-          <h1 class="page-title">ملاحظات زيارة الموقع</h1>
+          <h1 class="observations-title">ملاحظات زيارة الموقع</h1>
           
-          <div class="observation-item">
-            <div class="observation-text">
-              <div class="category-header">
-                <h3 class="category-title">الطابق الأول</h3>
+          ${observationItems.map((item, index) => `
+            <div class="observation-item">
+              <div class="observation-content">
+                <div class="observation-header">
+                  <h3 class="category-title">الفئة</h3>
+                  <h3 class="category-name">${item.category}</h3>
+                </div>
+                
+                <div class="observation-details">
+                  <div class="detail-section">
+                    <h4 class="detail-label">العناصر الخاضعة للمراجعة</h4>
+                    <p class="detail-text">${item.reviewElements}</p>
+                  </div>
+                  
+                  <div class="detail-section">
+                    <h4 class="detail-label">ملاحظات</h4>
+                    <p class="detail-text">${item.observations}</p>
+                  </div>
+                  
+                  <div class="detail-section">
+                    <h4 class="detail-label">التصحيح المحتمل</h4>
+                    <p class="detail-text">${item.correction}</p>
+                  </div>
+                </div>
               </div>
               
-              <div class="observation-content">
-                <h4 class="sub-category">العناصر الخاضعة للمراجعة</h4>
-                <p class="review-elements">أعمال الحديد والقوالب والصب لأرضية الطابق الأول</p>
-                
-                <h4 class="sub-category">ملاحظات</h4>
-                <p class="observations-text">تم الانتهاء من صب الخرسانة المسلحة لأرضية الطابق الأول وتبين وجود شقوق طفيفة في بعض المناطق</p>
-                
-                <h4 class="sub-category">التصحيح المطلوب</h4>
-                <p class="required-correction">يوصى بمراجعة المقاول لمعالجة الشقوق وذلك باستخدام المواد والطريقة المعتمدة</p>
+              <div class="observation-image-container">
+                ${item.image ? `
+                  <img src="${item.image}" alt="صورة الملاحظة" class="observation-image" />
+                ` : `
+                  <div class="image-placeholder">
+                    <div class="placeholder-content">
+                      <div class="image-icon">📸</div>
+                      <div class="image-text">صورة الملاحظة</div>
+                    </div>
+                  </div>
+                `}
               </div>
             </div>
-            
-            <div class="observation-image">
-              ${tasksWithImages[0]?.imageUri ? `
-                <img src="${tasksWithImages[0].imageUri}" alt="صورة الملاحظة" class="task-observation-image" />
-              ` : `
-                <div class="placeholder-image">
-                  <div class="placeholder-icon">📸</div>
-                  <div class="placeholder-text">صورة الملاحظة</div>
-                </div>
-              `}
-            </div>
-          </div>
-
-          <div class="observation-item">
-            <div class="observation-text">
-              <div class="category-header">
-                <h3 class="category-title">الطابق الأول</h3>
-              </div>
-              
-              <div class="observation-content">
-                <h4 class="sub-category">العناصر الخاضعة للمراجعة</h4>
-                <p class="review-elements">أعمال الحديد والقوالب لأعمدة الطابق الأول</p>
-                
-                <h4 class="sub-category">ملاحظات</h4>
-                <p class="observations-text">تم الانتهاء من أعمال الحديد والقوالب لأعمدة الطابق الأول وتم الحصول على موافقة المراجع ولم يتم وجود مخالفات المحاور ولم يتم وجود مخالفات</p>
-                
-                <h4 class="sub-category">التصحيح المطلوب</h4>
-                <p class="required-correction">المقاول ولم يتم وجود مخالفات</p>
-              </div>
-            </div>
-            
-            <div class="observation-image">
-              ${tasksWithImages[1]?.imageUri ? `
-                <img src="${tasksWithImages[1].imageUri}" alt="صورة الملاحظة" class="task-observation-image" />
-              ` : `
-                <div class="placeholder-image">
-                  <div class="placeholder-icon">📸</div>
-                  <div class="placeholder-text">صورة الملاحظة</div>
-                </div>
-              `}
-            </div>
-          </div>
-
-          <div class="observation-item">
-            <div class="observation-text">
-              <div class="category-header">
-                <h3 class="category-title">الأعمال الخارجية</h3>
-              </div>
-              
-              <div class="observation-content">
-                <h4 class="sub-category">العناصر الخاضعة للمراجعة</h4>
-                <p class="review-elements">أعمال الحديد والقوالب والصب لقواعد السور</p>
-                
-                <h4 class="sub-category">ملاحظات</h4>
-                <p class="observations-text">تم الانتهاء من أعمال الخرسانة المسلحة لقواعد السور وتبين جمع بقايا الحديد بشكل ملائم حتى الآن</p>
-                
-                <h4 class="sub-category">التصحيح المطلوب</h4>
-                <p class="required-correction">يوصى بمراجعة المقاول لتنظيف الموقع قبل إنهاء أعمال الخرسانة للسور والذي يجب تطبيق الطريق وعدم انتظار والطريقة المعتمدة</p>
-              </div>
-            </div>
-            
-            <div class="observation-image">
-              ${tasksWithImages[2]?.imageUri ? `
-                <img src="${tasksWithImages[2].imageUri}" alt="صورة الملاحظة" class="task-observation-image" />
-              ` : `
-                <div class="placeholder-image">
-                  <div class="placeholder-icon">📸</div>
-                  <div class="placeholder-text">صورة الملاحظة</div>
-                </div>
-              `}
-            </div>
-          </div>
+          `).join('')}
         </div>
       `;
     };
